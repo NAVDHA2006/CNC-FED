@@ -1,1 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <style>
+        :root {
+            --primary-color: #9966CC;
+            --secondary-color: #DE3163;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 3rem auto;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: #F0F8FF;
+        }
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .form-header h2 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #000000;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+        input:focus, textarea:focus, select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 8px rgba(110, 72, 170, 0.3);
+            outline: none;
+        }
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        .radio-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        .radio-option {
+            display: flex;
+            align-items: center;
+        }
+        .radio-option input {
+            width: auto;
+            margin-right: 0.5rem;
+        }
+        button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+           
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .form-footer {
+            text-align: center;
+            margin-top: 1rem;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        #other-subject-container {
+            margin-top: 1rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-header">
+            <h2>Contact Us</h2>
+            <p>Fill out the form below and we'll get back to you soon</p>
+        </div>
+        <form>
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="john@example.com" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="+1 (123) 456-7890">
+            </div>
+            <div class="form-group">
+                <label>Preferred Contact Method</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="contact-email" name="contact-method" checked>
+                        <label for="contact-email">Email</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="contact-phone" name="contact-method">
+                        <label for="contact-phone">Phone</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <select id="subject" required>
+                    <option value="" disabled selected>Select a subject</option>
+                    <option value="support">Technical Support</option>
+                    <option value="sales">Sales Inquiry</option>
+                    <option value="feedback">Feedback</option>
+                    <option value="other">Other</option>
+                </select>
+                <div id="other-subject-container">
+                    <label for="other-subject">Please specify:</label>
+                    <input type="text" id="other-subject" placeholder="Enter your subject">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" placeholder="Type your message here..." required></textarea>
+            </div>
+            <button type="submit">Send Message</button>
+            <div class="form-footer">
+                We typically respond within 24 hours
+            </div>
+        </form>
+    </div>
 
+    <script>
+        document.getElementById('subject').addEventListener('change', function() {
+            const otherSubjectContainer = document.getElementById('other-subject-container');
+            if (this.value === 'other') {
+                otherSubjectContainer.style.display = 'block';
+                document.getElementById('other-subject').setAttribute('required', '');
+            } else {
+                otherSubjectContainer.style.display = 'none';
+                document.getElementById('other-subject').removeAttribute('required');
+            }
+        });
+    </script>
+</body>
+</html>
